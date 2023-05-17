@@ -1,7 +1,8 @@
+import ContactForm from "./components/ContactsForm";
 function App() {
   return (
     <div className="App">
-      <h1>Rollcall</h1>
+      <ContactForm />
     </div>
   );
 }
