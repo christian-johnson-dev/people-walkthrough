@@ -1,9 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 const ContactForm = (props) => {
+  const { allContacts, setAllContacts } = props;
+
+  //*--- useState hooks ---*//
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
+  //*--- event handlers ---*//
   const onSubmitHandler = (event) => {
     event.preventDefault();
     axios
@@ -11,9 +15,14 @@ const ContactForm = (props) => {
         firstName,
         lastName,
       })
-      .then(setFirstName(""), setLastName(""), (response) => {
-        console.log("Response: ", response);
-      })
+      .then(
+        (response) => {
+          console.log("Response: ", response);
+          setAllContacts([...allContacts, response.data]);
+        },
+        setFirstName(""),
+        setLastName("")
+      )
       .catch((err) => console.log(err));
   };
 
